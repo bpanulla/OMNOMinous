@@ -1,0 +1,41 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+	<bean id="dynamicLoader" class="org.panulla.util.DynamicClassLoader">
+		<constructor-arg name="classpath">
+			<value>${classpath}</value>
+		</constructor-arg>
+		<constructor-arg name="libraryRoot">
+			<value>${libFolder}</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="loader" class="org.panulla.util.JavaLoaderFacade" />
+	
+	<bean id="modelFactory" class="org.panulla.semweb.ModelFactory" />
+	
+	<bean id="vocabDictionary" class="org.panulla.semweb.VocabularyModel" />
+																								
+	<bean id="persistentModel" factory-bean="modelFactory" factory-method="getPersistentModel">
+		<constructor-arg name="datasource">
+			<value>${dsn}</value>
+		</constructor-arg>
+		<constructor-arg name="name">
+			<value>${graphname}</value>
+		</constructor-arg>
+		<constructor-arg name="dbtype">
+			<value>${dbtype}</value>
+		</constructor-arg>
+		<constructor-arg name="createOnNew">
+			<value>${createModelOnNew}</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="persistentInfModel" factory-bean="modelFactory" factory-method="getReasoningModel">
+		<constructor-arg name="inferencing">
+			<value>${infLevel}</value>
+		</constructor-arg>
+		<constructor-arg name="model">
+			<ref bean="persistentModel" />
+		</constructor-arg>
+	</bean>
+</beans>
