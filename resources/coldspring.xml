@@ -39,6 +39,15 @@
 		</constructor-arg>
 	</bean>
 	
+	<bean id="memberModel" class="omnominous.model.Member">
+		<constructor-arg name="model">
+			<ref bean="persistentInfModel" />
+		</constructor-arg>
+		<constructor-arg name="vocab">
+			<ref bean="vocabDictionary" />
+		</constructor-arg>
+	</bean>
+
 	<!-- OpenID Authentication -->
 	<bean id="OpenIDConsumer" class="OpenID.OpenIDConsumer2" />
 	
