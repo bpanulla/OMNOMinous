@@ -26,7 +26,9 @@
 			    rootUri = "/omnominous/",
 			    webRoot = this.webRoot,
 			    projectRoot = this.projectRoot,
-			    debug = false
+			    debug = false,
+			    libFolder = this.projectRoot & "/lib",
+				classpath = ""
 			};
     </cfscript>
     
