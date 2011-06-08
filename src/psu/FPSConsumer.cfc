@@ -82,8 +82,17 @@
 		<cfscript>
 			var local = {};
 			local.credentials = arguments.authXml["authentication"];
-			local.uri = "urn:psu.edu:" & local.credentials.realm.XmlText
-									 &"/"& local.credentials.personID.XmlText;
+			
+			if ( local.credentials.realm.XmlText EQ "internal" )
+			{
+				local.domain = "psu.edu";	
+			}
+			else
+			{
+				local.domain = "fps.psu.edu";
+			}
+			
+			local.uri = "http://" & local.domain &"/person/"& local.credentials.personID.XmlText;
 			local.profile.identity = local.uri;
 			local.profile.user_identity = local.uri;
 			local.profile.result = lcase(local.credentials.status.XmlText);
