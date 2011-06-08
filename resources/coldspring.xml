@@ -38,4 +38,11 @@
 			<ref bean="persistentModel" />
 		</constructor-arg>
 	</bean>
+	
+	<!-- OpenID Authentication -->
+	<bean id="OpenIDConsumer" class="OpenID.OpenIDConsumer2" />
+	
+	<!-- Friends of Penn State Authentication  -->
+	<bean id="FPSConsumer" class="PSU.FPSConsumer" />
+	
 </beans>

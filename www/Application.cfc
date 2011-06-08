@@ -2,7 +2,7 @@
 	
 	<!--- Application settings --->
 	<cfscript>
-		this.name = "Nominous";
+		this.name = "OMNOMno.us";
 		this.applicationTimeout = createTimespan(5,0,0,0);
 		this.loginStorage = "session";
 		this.clientManagement = false;
@@ -15,9 +15,7 @@
 									.getParent();
 		
 		this.mappings = {};
-		this.mappings["/"] = this.webRoot;
-		this.mappings["/include"] = this.projectRoot & "/src/include";
-		this.mappings["/nominous"] = this.projectRoot & "/src/nominous";
+		this.mappings["/"] = this.projectRoot & "/src";
 		
 		this.properties = {
 			    dsn = "nominous",
@@ -25,7 +23,7 @@
 				dbtype = "Derby",
 			    createModelOnNew = true,
 				infLevel = "OWL_DL_MEM",
-			    rootUri = "/",
+			    rootUri = "/omnominous/",
 			    webRoot = this.webRoot,
 			    projectRoot = this.projectRoot,
 			    debug = false
