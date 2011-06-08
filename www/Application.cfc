@@ -27,6 +27,7 @@
 			    webRoot = this.webRoot,
 			    projectRoot = this.projectRoot,
 			    debug = false,
+			    resourceFolder = this.projectRoot & "/resources",
 			    libFolder = this.projectRoot & "/lib",
 				classpath = ""
 			};
@@ -40,23 +41,20 @@
 		<cfscript>
 			var local = structNew();
 			
-			// Derived filesystem paths
-			local.properties = this.properties;
-			local.properties.resourceFolder = this.projectRoot & "/resources";
-						
 			// Set up ColdSpring Object Factory
 			local.beanFactory = CreateObject('component', 'coldspring.beans.DefaultXmlBeanFactory')
-															.init(defaultProperties=local.properties);
-			local.beanFactory.loadBeans(local.properties.resourceFolder & "/coldspring.xml");
+															.init(defaultProperties=this.properties);
+			local.beanFactory.loadBeans(this.properties.resourceFolder & "/coldspring.xml");
 			
-			application.properties = local.properties;
+			// Copy references to properties and bean factory to Application scope
+			application.properties = this.properties;
 			application.beanFactory = local.beanFactory;
 			
 			// Save timestamp of application initialization
 			application.init = Now();
+			
+			return true;
 		</cfscript>
-
-		<cfreturn true />
 	</cffunction>
 	
 	<cffunction name="onApplicationEnd" returntype="boolean" output="false">
@@ -75,7 +73,8 @@
 	<cffunction name="onSessionEnd" returntype="boolean" output="false">
 		<cfreturn true />
 	</cffunction>
-
+	
+	
 	<!--- ========================================================================================================== \
 	|	Request
 	\ =========================================================================================================== --->
@@ -83,27 +82,39 @@
 	<cffunction name="onRequestStart" returntype="boolean" output="false">
 		<cfargument name="request" required="true" />
 
-		<cfif isDefined("URL.debug")>
-			<cfset application.properties.debug = URL.debug EQ true />
-		</cfif>
-
-		<cfif isDefined("URL.appReset")>
-			<cfset onApplicationStart() />
-		</cfif>
-
-		<cfsetting enablecfoutputonly="false" showdebugoutput="#application.properties.debug#" />
+		<cfscript>
+			if ( isDefined("URL.debug") )
+			{
+				application.properties.debug = URL.debug EQ true;
+			}
+			
+			if ( isDefined("URL.appReset") )
+			{
+				onApplicationStart();
+			}
+		</cfscript>
 
 		<!--- ******************************************************************\
 	    | Session authentication/authorization
 	 	\******************************************************************* --->
 	 	<cflogin>
-			<cfinclude template="/include/auth.cfm">
+		 	<!--- Check for member profile seed in session; if this struct exists,
+			 	log the user into the application --->
+			<cfif ( isDefined("session.member") )>
+				<cfloginuser
+					name="#session.member.uri#"
+					roles="#session.member.roles#"
+					password="" />
+			</cfif>
 		</cflogin>
 		
+		<cfsetting enablecfoutputonly="false" showdebugoutput="#application.properties.debug#" />
+
 		<cfreturn true />
 	</cffunction>
 
 	<cffunction name="onRequestEnd" returntype="boolean" output="false">
 		<cfreturn true />
 	</cffunction>
+
 </cfcomponent>
