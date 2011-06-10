@@ -117,11 +117,11 @@
 		<p class="info">New User: <span>#newUser#</span></p>
 		<p><a href="..">&larr; go Home</a></p>
 	<cfelse>
-		<p class="error">ERROR: <span>#creds.resultMsg#</span></p>
+		<p class="error">ERROR: <span><cfif isDefined("creds.resultMsg")>#creds.resultMsg#<cfelse>Unknown error</cfif></span></p>
 		<p><a href="index.cfm">&larr; go back</a></p>
 	</cfif>
 	</cfoutput>
 	
-	<cfdump var="#creds#">
+	<cfif isDefined("creds")><cfdump var="#creds#"></cfif>
 	</section>
 </cfmodule>
