@@ -50,6 +50,17 @@ form fieldset div label {
 	padding: 5px;
 }
 
+form fieldset div label::after {
+	content: ":";
+}
+
+form#frmNewBookmark fieldset div label {
+	width: 10%;
+}
+form#frmNewBookmark fieldset div textarea {
+	width: 90%;
+}
+
 form fieldset div span
 {
 	width: 50%;
@@ -103,3 +114,7 @@ form fieldset div.controls input {
 input, button {
 	vertical-align: middle;
 }
+
+#sparqlResults { width: 80%; margin: 10px auto; text-align: left; }
+#sparqlResults table { border: 1px solid black; border-width: 1px 0 0 1px; }
+#sparqlResults table tr { border: 1px solid black; border-width: 0 1px 1px 0; }

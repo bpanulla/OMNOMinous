@@ -2,7 +2,12 @@
 <div id="content">
 	
 <cfif IsUserLoggedIn()>
-Hi!
+	Hi
+	<cfscript>
+		bookmarks = application.beanFactory.getBean("bookmarkModel").getMemberBookmarks(getAuthUser());
+	</cfscript>
+	
+	<cfdump var="#bookmarks#">
 <cfelse>
 Please log in!	
 </cfif>
