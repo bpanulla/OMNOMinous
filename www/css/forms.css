@@ -5,6 +5,7 @@
  ===================================== **/
 
 form#frmPasswordLogin,
+form#frmFPSLogin,
 form#frmOpenIDLogin {
 	width: 50%;
 	margin: 20px auto;
