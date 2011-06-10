@@ -12,8 +12,6 @@
 	<bean id="loader" class="org.panulla.util.JavaLoaderFacade" />
 	
 	<bean id="modelFactory" class="org.panulla.semweb.ModelFactory" />
-	
-	<bean id="vocabDictionary" class="org.panulla.semweb.VocabularyModel" />
 																								
 	<bean id="persistentModel" factory-bean="modelFactory" factory-method="getPersistentModel">
 		<constructor-arg name="datasource">
@@ -39,12 +37,14 @@
 		</constructor-arg>
 	</bean>
 	
+	<bean id="vocab" class="omnominous.Vocabulary" />
+	
 	<bean id="memberModel" class="omnominous.model.Member">
 		<constructor-arg name="model">
 			<ref bean="persistentInfModel" />
 		</constructor-arg>
 		<constructor-arg name="vocab">
-			<ref bean="vocabDictionary" />
+			<ref bean="vocab" />
 		</constructor-arg>
 	</bean>
 
