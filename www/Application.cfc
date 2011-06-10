@@ -23,7 +23,7 @@
 				dbtype = "Derby",
 			    createModelOnNew = true,
 				infLevel = "OWL_DL_MEM",
-			    rootUri = "/omnominous/",
+			    rootUri = "/",
 			    webRoot = this.webRoot,
 			    projectRoot = this.projectRoot,
 			    debug = false,
