@@ -47,6 +47,15 @@
 			<ref bean="vocab" />
 		</constructor-arg>
 	</bean>
+	
+	<bean id="bookmarkModel" class="omnominous.model.Bookmark">
+		<constructor-arg name="model">
+			<ref bean="persistentInfModel" />
+		</constructor-arg>
+		<constructor-arg name="vocab">
+			<ref bean="vocab" />
+		</constructor-arg>
+	</bean>
 
 	<!-- OpenID Authentication -->
 	<bean id="OpenIDConsumer" class="OpenID.OpenIDConsumer2" />
