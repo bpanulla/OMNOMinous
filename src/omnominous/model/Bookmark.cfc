@@ -24,18 +24,16 @@
 			<cf_sparqlns prefix="dct" uri="#variables.vocab.DCTerms.uri#" />
 			<cf_sparqlns prefix="omnom" uri="#variables.vocab.omnom.uri#" />
 						
-			SELECT DISTINCT ?resource ?title ?notes ?createdDate ?modifiedDate
+			SELECT DISTINCT ?resource ?title ?notes ?dateCreated ?dateModified
 			WHERE {
 				?member omnom:bookmarked ?resource.
-				?resource dct:title ?title.
+				?resource dct:title ?title;
+						dct:created ?dateCreated.
 				
-				OPTIONAL {
-					?resource dct:description ?notes;
-						  dct:created ?createdDate;
-						  dct:modified ?modifiedDate.
-				}
+				OPTIONAL { ?resource dct:description ?notes }
+				OPTIONAL { ?resource dct:modified ?dateModified }
 				
-				FILTER (?member = <cf_sparqlparam value="#arguments.member#" type="iri">)
+				FILTER (?member = <cf_sparqlparam value="#arguments.member#" type="iri">).
 			}
 		</cf_sparql>
 	
@@ -54,14 +52,18 @@
 			<cf_sparqlns prefix="dct" uri="#variables.vocab.DCTerms.uri#" />
 			<cf_sparqlns prefix="omnom" uri="#variables.vocab.omnom.uri#" />
 						
-			SELECT DISTINCT ?resource ?title ?notes
+			SELECT DISTINCT ?resource ?title ?notes ?dateCreated ?dateModified
 			WHERE {
 				?member omnom:bookmarked ?resource.
 				?resource dct:title ?title;
-						  dct:description ?notes.
-			}
-			FILTER (?member = <cf_sparqlparam value="#arguments.member#" type="iri"> and
+						dct:created ?dateCreated.
+				
+				OPTIONAL { ?resource dct:description ?notes }
+				OPTIONAL { ?resource dct:modified ?dateModified }
+	
+				FILTER (?member = <cf_sparqlparam value="#arguments.member#" type="iri"> and
 					?resource = <cf_sparqlparam value="#arguments.resource#" type="iri">)
+			}
 		</cf_sparql>
 	
 		<cfreturn local.qMemberBookmarks />
@@ -83,7 +85,7 @@
 										.addProperty(variables.vocab.DCTerms.description, arguments.notes)
 										.addProperty(variables.vocab.DCTerms.created, DateFormat(Now(), "yyyy/mm/dd"));
 										
-			variables.model.getResource(arguments.uri)
+			variables.model.getResource(arguments.member)
 										.addProperty(variables.vocab.omnom.bookmarked, local.bookmark);
 			
 		</cfscript>
@@ -101,7 +103,7 @@
 		<cfscript>
 			var local = {};
 			
-			// Get a handle on the member
+			// Get handles on the member and resource
 			local.member = variables.model.getResource(arguments.member);
 			local.bookmark = variables.model.getResource(arguments.resource);
 			
