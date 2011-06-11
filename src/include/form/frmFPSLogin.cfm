@@ -1,4 +1,4 @@
-<form id="frmFPSLogin" method="post" action="auth.cfm">
+<form id="frmFPSLogin" method="post" action="login/auth.cfm">
 	<fieldset class="panel">
 		<legend><a href="https://fps.psu.edu/">Friends of Penn State</a> Login</legend>
 		

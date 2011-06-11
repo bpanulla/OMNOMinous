@@ -1,6 +1,6 @@
 <script src="https://www.idselector.com/selector/c7749d5e1939c42dbf5db85bdac728d02fc5fe91" id="__openidselector" type="text/javascript" charset="utf-8"></script>
 
-<form id="frmOpenIDLogin" method="post" action="auth.cfm">
+<form id="frmOpenIDLogin" method="post" action="login/auth.cfm">
 	<fieldset class="panel">
 		<legend>OpenID Login</legend>
 		

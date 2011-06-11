@@ -10,9 +10,11 @@
 	<head>
 		<cfoutput>
 		<title>#attributes.title#</title>
-		<link rel="stylesheet" type="text/css" href="#application.properties.rootUri#css/style.css" />
-		<link rel="stylesheet" type="text/css" href="#application.properties.rootUri#css/forms.css" />
+		<base href="#application.properties.rootUri#">
 		</cfoutput>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/forms.css" />
 	
 		<meta charset="utf-8">
 		<!--[if lt IE 9]>
@@ -24,20 +26,18 @@
 	<header>
 		<div id="hdrContainer">
 			<div id="hdrLeft">
-				<h1><cfoutput><a class="hdr white" href="#application.properties.rootUri#">OMNOMino.us</a></cfoutput></h1>
+				<h1><a class="hdr white" href=".">OMNOMino.us</a></h1>
 				<em class="description">In yer folksonomy, semantifyin' yer tagz.</em>
 			</div>
 			
 			<nav>
 			    <ul>
-					<cfoutput>
-					<cfif IsUserLoggedIn()>
-						<li><a href="#application.properties.rootUri#add.cfm">New Bookmark</a></li>
-						<li><a href="#application.properties.rootUri#logout">Log Out</a></li>
-					<cfelse>
-						<li><a href="#application.properties.rootUri#login">Log In</a></li>
-					</cfif>
-				    </cfoutput>
+				<cfif IsUserLoggedIn()>
+					<li><a href="add.cfm">New Bookmark</a></li>
+					<li><a href="logout">Log Out</a></li>
+				<cfelse>
+					<li><a href="login">Log In</a></li>
+				</cfif>
 				</ul>
 			</nav>
 		</div>
