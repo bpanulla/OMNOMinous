@@ -102,10 +102,23 @@
 			roles = memberModel.getRoles(userID)
 		};
 		
-		// Copy credentials to the session scope
+		// Authorize the user and copy credentials to the session scope
+		login(member.uri, member.roles);
 		session.member = member;
 	}
 </cfscript>
+
+<cffunction name="login" access="private" output="false">
+	<cfargument name="uri" type="string" required="true" >
+	<cfargument name="roles" type="string" required="false" default="" >
+	
+ 	<cflogin>
+		<cfloginuser
+			name="#arguments.uri#"
+			roles="#arguments.roles#"
+			password="" />
+	</cflogin>
+</cffunction>
 
 <cfmodule template="/include/layout.cfm" title="Authentication">
 	<section style="text-align:left">
