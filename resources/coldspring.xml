@@ -28,7 +28,7 @@
 		</constructor-arg>
 	</bean>
 
-	<bean id="persistentInfModel" factory-bean="modelFactory" factory-method="getReasoningModel">
+	<bean id="model" factory-bean="modelFactory" factory-method="getReasoningModel">
 		<constructor-arg name="inferencing">
 			<value>${infLevel}</value>
 		</constructor-arg>
@@ -38,29 +38,13 @@
 	</bean>
 	
 	<bean id="vocab" class="omnominous.Vocabulary" />
-	
-	<bean id="memberModel" class="omnominous.model.Member">
-		<constructor-arg name="model">
-			<ref bean="persistentInfModel" />
-		</constructor-arg>
-		<constructor-arg name="vocab">
-			<ref bean="vocab" />
-		</constructor-arg>
-	</bean>
-	
-	<bean id="bookmarkModel" class="omnominous.model.Bookmark">
-		<constructor-arg name="model">
-			<ref bean="persistentInfModel" />
-		</constructor-arg>
-		<constructor-arg name="vocab">
-			<ref bean="vocab" />
-		</constructor-arg>
-	</bean>
 
-	<!-- OpenID Authentication -->
+	<!-- Managers -->	
+	<bean id="memberModel" class="omnominous.Member" />
+	<bean id="bookmarkModel" class="omnominous.Bookmark" />
+
+	<!-- Authentication -->
 	<bean id="OpenIDConsumer" class="OpenID.OpenIDConsumer2" />
-	
-	<!-- Friends of Penn State Authentication  -->
 	<bean id="FPSConsumer" class="PSU.FPSConsumer" />
 	
 </beans>
