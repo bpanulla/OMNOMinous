@@ -32,6 +32,7 @@
 			    <ul>
 					<cfoutput>
 					<cfif IsUserLoggedIn()>
+						<li><a href="#application.properties.rootUri#add.cfm">New Bookmark</a></li>
 						<li><a href="#application.properties.rootUri#logout">Log Out</a></li>
 					<cfelse>
 						<li><a href="#application.properties.rootUri#login">Log In</a></li>
