@@ -4,7 +4,7 @@
 <cfif IsUserLoggedIn()>
 	Hi
 	<cfscript>
-		bookmarks = application.beanFactory.getBean("bookmarkModel").getMemberBookmarks(getAuthUser());
+		bookmarks = application.beanFactory.getBean("bookmarkModel").getAllByMember(getAuthUser());
 	</cfscript>
 	
 	<cfdump var="#bookmarks#">
