@@ -41,7 +41,7 @@
 	</cffunction>
 	
 	
-	<cffunction name="get" access="public" output="false" returntype="query">
+	<cffunction name="get" access="public" returntype="query">
 		<cfargument name="member" type="string" required="true" />
 		<cfargument name="resource" type="string" required="true" />
 		
@@ -61,8 +61,8 @@
 				OPTIONAL { ?resource dct:description ?notes }
 				OPTIONAL { ?resource dct:modified ?dateModified }
 	
-				FILTER (?member = <cf_sparqlparam value="#arguments.member#" type="iri"> and
-					?resource = <cf_sparqlparam value="#arguments.resource#" type="iri">)
+				FILTER (?member = <cf_sparqlparam value="#arguments.member#" type="iri">)
+				FILTER (?resource = <cf_sparqlparam value="#arguments.resource#" type="iri">)
 			}
 		</cf_sparql>
 	
