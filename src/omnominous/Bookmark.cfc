@@ -122,4 +122,28 @@
 	
 		<cfreturn true />
 	</cffunction>
+	
+	
+	<cffunction name="delete" access="public" output="false" returntype="boolean">
+		<cfargument name="member" type="string" required="true" />
+		<cfargument name="resource" type="string" required="true" />
+		
+		<cfscript>
+			var local = {};
+			
+			// Get handles on the member and resource
+			local.member = variables.model.getResource(arguments.member);
+			local.bookmark = variables.model.getResource(arguments.resource);
+			
+			// Has this member bookmarked this resource?
+			if (local.member.hasProperty( variables.vocab.omnom.bookmarked, local.bookmark ))
+			{
+				// Clean up any references to this bookmark
+				variables.model.removeAll( subject:local.bookmark );
+				variables.model.removeAll( subject:local.member, predicate:variables.vocab.omnom.bookmarked, object:local.bookmark );
+			}
+		</cfscript>
+	
+		<cfreturn true />
+	</cffunction>
 </cfcomponent>

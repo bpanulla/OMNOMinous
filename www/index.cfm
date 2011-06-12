@@ -2,12 +2,28 @@
 <div id="content">
 	
 <cfif IsUserLoggedIn()>
-	Hi
 	<cfscript>
 		bookmarks = application.beanFactory.getBean("bookmarkModel").getAllByMember(getAuthUser());
 	</cfscript>
 	
-	<cfdump var="#bookmarks#">
+	<h2>My Bookmarks</h2>
+	<cfif bookmarks.recordcount GT 0>
+		<ul class="bookmarks">
+		<cfoutput query="bookmarks">
+			<li>
+				<ul class="cmd">
+					<li><a href="edit.cfm?resource=#URLEncodedFormat(bookmarks.resource)#">Edit</a></li>
+					<li><a href="delete.cfm?resource=#URLEncodedFormat(bookmarks.resource)#">Delete</a></li>
+				</ul>
+				<h2><a href="#bookmarks.resource#">#bookmarks.title#</a></h3>
+				<div>Created #bookmarks.dateCreated#</div>
+				<p>#bookmarks.notes#</p>
+			</li>
+		</cfoutput>
+		</ul>
+	<cfelse>
+		<p>No bookmarks.</p>
+	</cfif>
 <cfelse>
 Please log in!	
 </cfif>
