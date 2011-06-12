@@ -5,14 +5,10 @@
 <cfparam name="form.notes" type="string" default="">
 
 <cfmodule template="/include/layout.cfm" title="Edit Bookmark">
-	<cfif trim(url.resource) NEQ "">
-		
-		
-		
-	<cfelseif trim(form.resource) NEQ "" and trim(form.title) NEQ "">
+	<cfif trim(form.resource) NEQ "" and trim(form.title) NEQ "">
 		<cfscript>
 			application.beanFactory.getBean("memberModel")
-				.updateBookmark(
+				.update(
 					getAuthUser(),
 					trim(form.resource),
 					trim(form.title),
@@ -21,7 +17,13 @@
 		</cfscript>
 		
 		<cflocation url="." addtoken="false">
+	
+	<cfelse>
+		<cfscript>
+			bookmark = application.beanFactory.getBean("bookmarkModel").get(URL.resource);
+		</cfscript>
+		
+		<cfinclude template="/include/form/frmEditBookmark.cfm">
+		
 	</cfif>
-
-	<cfinclude template="/include/form/frmEditBookmark.cfm">
 </cfmodule>
