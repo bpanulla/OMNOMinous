@@ -14,78 +14,38 @@ a img { border:none } /* Gets rid of IE's blue borders */
 
 article, header, footer, section, nav { display: block; } /* Help Firefox deal with HTML5 elements */
 /********************************************/
-
-body {width:100%; margin:0 auto; text-align:center; color:#666; font:12px Arial, Sans-Serif;}
+body { width: 100%; height: 100%; font:12px Arial, Sans-Serif;
+		border: 1px solid #87b83d; background-color:#fff; }
 .clear {clear:both}
 
 a:link, a:active, a:visited {color:#87b83d; text-decoration:none;}
-a.white:link, a.white:active, a.white:visited {color:#fff}
+header a:link, header a:active, header a:visited,
+	footer a:link, footer a:active, footer a:visited {color:#fff}
 a:hover {text-decoration:underline}
-a.hdr {font-size:36px}
-a.hdr:hover {text-decoration:none}
+header h1 a:hover {text-decoration:none}
 
-header {position:relative; width:100%; height:100px; background-color:#87B83D; margin-bottom:20px; color:#fff;}
-footer {float:left; position:relative; width:100%; height:50px; background-color:#87b83d; margin-top:20px; padding-top:20px; color:#fff;}
-footer a {color:#fff; text-decoration:underline;}
-section#container {position:relative; width:940px; margin:0 auto; text-align:center; background: #fff;}
+h1 {color: #fff; font-size: 20px;}
+h2, h3, h4 {color:#87b83d}
+h2 {font-size:18px;}
+h3 {font-size:16px;}
+h4 {font-size:14px;}
 
-#hdrContainer {width:940px; margin:0 auto;}
-h1 {float:left; font-size:36px; color:#fff; text-align:left; font-weight:normal; margin:20px 0 0 20px; letter-spacing:-2px;}
-#hdrLeft {float:left; width:500px; height:100px; text-align:left;}
-.description {float:left; width:480px; margin:0 0 0 20px; font-size:14px;}
-header nav {float:left; width:420px; height:70px; text-align:left; padding:45px 0 0 20px;}
+header, footer, section#content {width: 100%;}
+header div.wrapper, footer div.wrapper, section#content div.wrapper {width: 960px; margin: 0 auto;}
+header {height:100px; margin-bottom:20px;}
+footer {height:50px; margin-top:20px; padding-top:20px;}
+
+header, footer {color: #fff; background-color:#87B83D;}
+footer {text-align:center;}
+section#content {color:#87B83D; background-color: #fff; min-height:200px;}
+
+header #masthead {float:left; width:500px; height:100px; text-align:left;}
+header #masthead h1 {font-size:36px; color:#fff; text-align:left; font-weight:normal; margin:20px 0 0 20px; letter-spacing:-2px;}
+header #masthead .description {margin:0 0 0 20px; font-size:14px;}
+header nav {float:left; width:30%; height:70px; text-align:left; padding:45px 0 0 20px;}
 header nav ul {margin:0;}
-header nav li {display:inline; font-size:18px; font-weight:bold; margin:0 20px 0 0;}
+header nav li {display:inline; font-size:16px; font-weight:bold; margin:0 20px 0 0;}
 header nav a:link, header nav a:visited, header nav a:active {color:#fff; text-decoration:none;}
 header nav a:hover {color:#fff; text-decoration:underline;}
-
-#content {float:left; width:500px; margin: 0px auto; text-align:left; min-height:200px;}
-.post {width:478px; margin:0 0 20px 0; clear:both; border:1px solid #87b83d;}
-h2 {color:#87b83d; font-size:18px; padding:20px 20px 0 20px;}
-h2 a {color:#87b83d; font-size:18px; text-decoration:none;}
-h2.pagetitle {padding:0 0 5px 20px;}
-h3 {color:#87b83d; font-size:18px; padding:20px 20px 0 20px;}
-h3#comments {color:#87b83d; font-size:16px; padding:20px 20px 10px 0;}
-h3#respond {color:#87b83d; font-size:18px; padding:20px 20px 0 0;}
-.postdate {color:#fff; font-size:14px; font-weight:bold; padding:8px 20px; background-color:#87b83d;}
-.postentry {padding:20px;}
-.postentry img {padding:10px;}
-.postentry p {padding:0 0 10px 0;}
-.postentry ul {padding:0 0 0 10px; list-style-type:none; margin:0 0 0 20px;}
-.postentry ul li {padding:0 0 5px 15px; background: url(/wp-includes/images/bullet.gif) top left no-repeat;}
-.akst_link {display:block; padding:20px 0 0 0;}
-.postmetadata {padding:0 20px 20px 20px; clear:both;}
-.comments {margin:5px 0 20px 10px;}
-.alt {display:block; padding:10px 0 10px 0;}
-a.comments:link {color:#87b83d; text-decoration:underline;}
-.entry p {padding:0 20px 20px 20px;}
-.entry img {padding:10px;}
-.entry .akst_link {display:block; padding:10px 0 10px 20px;}
-.entry ul {padding:0 20px 0 10px; list-style-type:none; margin:0 0 0 20px;}
-.entry ul li {padding:0 0 5px 15px; background: url(/wp-includes/images/bullet.gif) top left no-repeat;}
-.navigation {float:left; display:block; padding:0 20px 10px 0;}
-small {display:block; padding:5px 0 10px 20px; font-size:10px; font-weight:bold;}
-small.commentmetadata {display:block; padding:0 0 10px 0; font-size:10px; font-weight:bold;}
-blockquote {padding:10px 20px; color:#999; font-size:12px; font-style:italic;}
-#search {float:left; width:178px; padding:20px; border:1px solid #87b83d;}
-input#s {width:160px; padding:3px; margin:0 0 5px 0;}
-
-.aligncenter {display:block; margin-left:auto; margin-right:auto;}
-.alignleft {float:left;}
-.alignright {float:right;}
-
-.wp-caption {border: 1px solid #ddd; text-align: center; background-color: #f3f3f3; padding-top: 4px; margin: 10px; -moz-border-radius: 3px; -khtml-border-radius: 3px;	-webkit-border-radius: 3px;	border-radius: 3px;}
-.wp-caption img {margin: 0;	padding: 0;	border: 0 none;}
-.wp-caption-dd {font-size: 11px; line-height: 17px; padding: 0 4px 5px;	margin: 0;}
-
-#sidebar-1 {float:left; width:220px; margin-right:20px; text-align:left;}
-#sidebar-1 h2 {color:#fff; font-size:14px; font-weight:bold; padding:8px 20px; background-color:#87b83d;}
-#sidebar-1 ul {border:0px;}
-#sidebar-1 li {border:0px;}
-#sidebar-1 ul li ul {margin-bottom:20px; border-bottom:1px solid #87b83d;}
-#sidebar-1 ul li ul li {padding:0 0 10px 20px; border-left:1px solid #87b83d; border-right:1px solid #87b83d;}
-#sidebar-1 a {display:block;}
-#sidebar-2 {float:left; width:140px; text-align:left;}
-#sidebar-2 img {padding-bottom:20px;}
 
 textarea {width:450px; height:100px; margin:10px 0 10px 0; font-family:Arial, Sans-Serif; font-size:12px; padding:10px;}

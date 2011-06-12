@@ -6,30 +6,30 @@
 <cfif thisTag.executionMode IS "start">
 <cfcontent reset="true">
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
 		<cfoutput>
 		<title>#attributes.title#</title>
 		<base href="#application.properties.rootUri#">
 		</cfoutput>
-
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<link rel="stylesheet" type="text/css" href="css/forms.css" />
-	
+		
 		<meta charset="utf-8">
+		<link rel="stylesheet" media="all" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" media="all" type="text/css" href="css/forms.css" />
+	
 		<!--[if lt IE 9]>
 		  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 	</head>
-	<body<cfif len(attributes.class)><cfoutput> class="#attributes.class#"></cfoutput></cfif>>
+	<body lang="en"<cfif len(attributes.class)><cfoutput> class="#attributes.class#"></cfoutput></cfif>>
 	
 	<header>
-		<div id="hdrContainer">
-			<div id="hdrLeft">
-				<h1><a class="hdr white" href=".">OMNOMino.us</a></h1>
+		<div class="wrapper">
+			<div id="masthead">
+				<h1><a href=".">OMNOMino.us</a></h1>
 				<em class="description">In yer folksonomy, semantifyin' yer tagz.</em>
 			</div>
-			
+				
 			<nav>
 			    <ul>
 				<cfif IsUserLoggedIn()>
@@ -42,20 +42,25 @@
 			</nav>
 		</div>
 	</header>
-
-	<section id="container">
+	
+	<section id="content">
+	<div class="wrapper">
 <cfelseif thisTag.executionMode IS "end">
+	</div> <!--- id="content" --->
 	</section>
 	
 	<footer>
-		<section prefix="dc: http://purl.org/dc/elements/1.1/">
+	<div class="wrapper">
+		<div prefix="dc: http://purl.org/dc/elements/1.1/">
 		<p id="copyright" rel="copyright" property="dc:rights">Copyright &copy;
 			<cfoutput><span property="dc:dateCopyrighted" content="#Year(now())#">#Year(now())#</span></cfoutput>
 			<a href="http://brainpanlabs.com" target="_blank"><span property="dc:publisher" content="Brainpan Labs">Brainpan Labs</span></a>
 		</p>
-		</section>
+		</div>
+	</div>
 	</footer>
 	
+	</div> <!-- id="wrapper" --->
 	</body>
 </html>
 </cfif>
