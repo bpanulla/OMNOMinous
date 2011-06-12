@@ -48,6 +48,7 @@ form fieldset div label {
 	text-align: right;
 	margin-right: 5px;
 	padding: 5px;
+	vertical-align: top;
 }
 
 form fieldset div label::after {
