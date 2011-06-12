@@ -84,15 +84,15 @@
 		if ( not memberModel.openIdExists( creds.user_identity ) )
 		{
 			newUser = true;
-			userID = memberModel.addUser( creds );
+			userID = memberModel.create( creds );
 		}
 		else
 		{
-			userID = memberModel.getOpenIDUser( creds.user_identity );
+			userID = memberModel.getByOpenID( creds.user_identity );
 		}
 
 		// Get user credentials		
-		userProfile = memberModel.getUser( userID );
+		userProfile = memberModel.get( userID );
 		
 		member = {
 			uri = userID,

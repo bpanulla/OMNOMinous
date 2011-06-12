@@ -5,8 +5,8 @@
 <cfmodule template="/include/layout.cfm" title="Add Bookmark">
 	<cfif trim(form.resource) NEQ "" and trim(form.title) NEQ "">
 		<cfscript>
-			application.beanFactory.getBean("memberModel")
-				.addBookmark(
+			application.beanFactory.getBean("bookmarkModel")
+				.create(
 					getAuthUser(),
 					trim(form.resource),
 					trim(form.title),

@@ -31,7 +31,7 @@
 	</cffunction>
 	
 	
-	<cffunction name="getOpenIDUser" access="public" output="false" returntype="string">
+	<cffunction name="getByOpenID" access="public" output="false" returntype="string">
 		<cfargument name="openid" type="string" required="true" />
 		
 		<cfset var local = {} />
@@ -49,7 +49,7 @@
 	</cffunction>
 	
 	
-	<cffunction name="getUser" access="public" output="false" returntype="query">
+	<cffunction name="get" access="public" output="false" returntype="query">
 		<cfargument name="uri" type="string" required="true" />
 		
 		<cfset var local = {} />
@@ -92,7 +92,7 @@
 	</cffunction>
 	
 		
-	<cffunction name="addUser" access="public" output="false" returntype="string">
+	<cffunction name="create" access="public" output="false" returntype="string">
 		<cfargument name="credentials" type="struct" required="true" />
 			
 		<cfscript>

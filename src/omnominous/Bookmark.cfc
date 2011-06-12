@@ -14,12 +14,12 @@
 	</cffunction>
 	
 	
-	<cffunction name="getMemberBookmarks" access="public" output="true" returntype="query">
+	<cffunction name="getAllByMember" access="public" output="false" returntype="query">
 		<cfargument name="member" type="string" required="true" />
 		
 		<cfset var local = {} />
 		
-		<cf_sparql name="local.qMemberBookmarks" model="#variables.model#" debug="true">
+		<cf_sparql name="local.qMemberBookmarks" model="#variables.model#">
 			<cf_sparqlns prefix="foaf" uri="#variables.vocab.FOAF.uri#" />
 			<cf_sparqlns prefix="dct" uri="#variables.vocab.DCTerms.uri#" />
 			<cf_sparqlns prefix="omnom" uri="#variables.vocab.omnom.uri#" />
@@ -41,7 +41,7 @@
 	</cffunction>
 	
 	
-	<cffunction name="getBookmark" access="public" output="false" returntype="query">
+	<cffunction name="get" access="public" output="false" returntype="query">
 		<cfargument name="member" type="string" required="true" />
 		<cfargument name="resource" type="string" required="true" />
 		
@@ -70,7 +70,7 @@
 	</cffunction>
 	
 	
-	<cffunction name="addBookmark" access="public" output="false" returntype="boolean">
+	<cffunction name="create" access="public" output="false" returntype="boolean">
 		<cfargument name="member" type="string" required="true" />
 		<cfargument name="resource" type="string" required="true" />
 		<cfargument name="title" type="string" required="true" />
@@ -94,7 +94,7 @@
 	</cffunction>
 	
 	
-	<cffunction name="editBookmark" access="public" output="false" returntype="boolean">
+	<cffunction name="update" access="public" output="false" returntype="boolean">
 		<cfargument name="member" type="string" required="true" />
 		<cfargument name="resource" type="string" required="true" />
 		<cfargument name="title" type="string" required="true" />
