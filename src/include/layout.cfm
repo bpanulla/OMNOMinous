@@ -1,4 +1,4 @@
-﻿<cfparam name="attributes.title" default="" />
+﻿﻿<cfparam name="attributes.title" default="" />
 <cfparam name="attributes.class" default="" />
 
 <cfparam name="application.properties.rootUri" default="/" />
@@ -16,7 +16,9 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" media="all" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" media="all" type="text/css" href="css/forms.css" />
-	
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.8/jquery-ui.min.js"></script>
+		
 		<!--[if lt IE 9]>
 		  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
