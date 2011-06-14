@@ -36,7 +36,7 @@ header {height:100px; margin-bottom:20px;}
 footer {height:50px; margin-top:20px; padding-top:20px;}
 
 header, footer {color: #fff; background-color:#87B83D;}
-footer {text-align:center;}
+footer {clear:both; text-align:center;}
 section#content {color:#87B83D; background-color: #fff; min-height:200px;}
 
 header #masthead {float:left; width:500px; height:100px; text-align:left;}
@@ -49,3 +49,15 @@ header nav a:link, header nav a:visited, header nav a:active {color:#fff; text-d
 header nav a:hover {color:#fff; text-decoration:underline;}
 
 textarea {width:450px; height:100px; margin:10px 0 10px 0; font-family:Arial, Sans-Serif; font-size:12px; padding:10px;}
+
+
+ul.bookmarks { margin-top: 20px; width: 100%; }
+
+ul.bookmarks > li { margin-top: 20px; width: 100%; border: 1px solid #666; padding: 3px; }
+ul.bookmarks > li p { margin-top: 10px; }
+ul.bookmarks > li div { font-style: italic }
+
+ul.bookmarks > li ul.cmd {float:right; }
+ul.bookmarks > li ul.cmd li { display: inline-block; padding: 0 5px; }
+
+#ihazaflavor { width: 50%; float: right; }
