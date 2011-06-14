@@ -56,10 +56,11 @@
 		
 		<cf_sparql name="local.qUserProfileByUri" model="#variables.model#">
 			<cf_sparqlns prefix="foaf" uri="#variables.vocab.FOAF.uri#" />
+			<cf_sparqlns prefix="omnom" uri="#variables.vocab.omnom.uri#" />
 			
 			SELECT DISTINCT ?uri ?fullname ?nickname ?email
 			WHERE {
-				?uri a foaf:Person.
+				?uri a omnom:Member.
 				OPTIONAL {
 					?uri foaf:name ?fullname;
 						 foaf:nick ?nickname;
@@ -104,7 +105,7 @@
 			local.email = "";
 			
 			local.newUser = variables.model.createResource(local.uri)
-								.addProperty(variables.vocab.RDF.type, variables.vocab.FOAF.Person)
+								.addProperty(variables.vocab.RDF.type, variables.vocab.omnom.Member)
 								.addProperty(variables.vocab.FOAF.openid, variables.model.createResource(arguments.credentials.user_identity));
 	
 			// Full name

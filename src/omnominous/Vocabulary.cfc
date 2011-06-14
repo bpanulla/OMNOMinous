@@ -1,6 +1,6 @@
 ﻿<cfcomponent extends="org.panulla.semweb.VocabularyModel">
 	
-	<cfset variables.uri = "http://omnomino.us/ontology##" />
+	<cfset variables.uri = "http://omnomino.us/ontology/om.n3##" />
 	
 	<cffunction name="init" access="public" hint="Constructor" returntype="Vocabulary" output="false">
 		<cfargument name="loader" type="org.panulla.util.JavaLoaderFacade" required="false">
