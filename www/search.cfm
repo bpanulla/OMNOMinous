@@ -7,31 +7,36 @@
 	
 	<cfset variables.search = variables.serviceURI &'?QueryClass=&MaxHits=5&QueryString='& trim(URL.keywords) />
 	
-	<!---<cfoutput>#variables.search#</cfoutput>--->
-	
 	<cftry>
-		<cfhttp url="#variables.search#" method="get" />
+		<cfhttp method="get" url="#variables.search#" />
 		
-		<cfset resultXml = xmlParse(CFHTTP.FileContent)>
-		
-		<cfif isDefined("resultXml.ArrayOfResult") and arrayLen(resultXml.ArrayOfResult.XmlChildren) GT 0>
-			<cfset matches = resultXml.ArrayOfResult.XmlChildren />
-			<cfloop index="i" array="#matches#">
-				<cfset item = '<li onclick="fill(this)" about="#i["URI"].XmlText#" title="#i["Description"].XmlText#">'>
-				<cfset item = item & i["Label"].XmlText>
-				<cfset item = item & '</li>'>
+		<cfscript>
+			resultXml = xmlParse(CFHTTP.FileContent);
+			
+			if (isDefined("resultXml.ArrayOfResult") and arrayLen(resultXml.ArrayOfResult.XmlChildren) GT 0)
+			{
+				result = arrayNew(1);
 				
-				<cfset result = result & item  />
-			</cfloop>
-		<cfelse>
-			<cfset result = "<p>No results.</p>" />
-		</cfif>
+				itemIter = resultXml.ArrayOfResult.XmlChildren.iterator();
+				while( itemIter.hasNext() )
+				{
+					itemXml = itemIter.next();
+					item = {
+						about = itemXml["URI"].XmlText,
+						description = itemXml["Description"].XmlText,
+						label = itemXml["Label"].XmlText
+					};
+					
+					arrayAppend(result, item);
+				}
+			}
+		</cfscript>
 
 		<cfcatch type="any">
-		<cfheader statuscode="500" statustext="Search Error. #cfcatch.message#">
-	</cfcatch>
+			<cfheader statuscode="500" statustext="Search Error. #cfcatch.message#">
+		</cfcatch>
 	</cftry>
 </cfif>
 
-<cfcontent reset="true">
-<cfoutput>#result#</cfoutput>
+<cfcontent reset="true" type="application/json">
+<cfoutput>#serializeJSON(result)#</cfoutput>
