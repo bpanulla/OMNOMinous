@@ -1,6 +1,6 @@
 	function lookup(inputString)
 	{
-		if(inputString.length == 0)
+		if (inputString.length == 0)
 		{
 			// Hide the suggestion box.
 			$('#suggestions').hide();
@@ -12,25 +12,29 @@
 			$.get("search.cfm?keywords="+inputString,
 				function(data)
 				{
-					if(data.length >0)
-					{
-						$('#suggestions').show();
-						$('#autoSuggestionsList').html(data);
-					}
+					$('#autoSuggestionsList').html(data);
+					$('#suggestions').show();
 				});
 		}
 	} //end
-		
+	
 	// if user clicks a suggestion, fill the text box.
-	function fill(item)
+	function fill( item )
 	{
-		//console.log(item);
-		var deleteLink = $(' <span>x</span>');
-		deleteLink.click( function() { alert('hi!') });
-		$(item).append(deleteLink);
-		$('#selectedTags').append(item);
+		var newTag = $(item);
+		
+		// Remove click handler and add delete link
+		newTag.removeAttr('onclick').unbind('click', fill);
+		newTag.append('<span onclick="remove(this)">x</span>');
+
+		$('#selectedTags').append(newTag);
 		setTimeout("$('#suggestions').hide();", 200);
 		
 		// Clear the input box		
 		$('#tagInput').val('');
+	}
+	
+	function remove(item)
+	{
+		$(item).parent().remove();
 	}

@@ -11,23 +11,16 @@
 		<cfhttp method="get" url="#variables.search#" />
 		
 		<cfscript>
+			result = "";
 			resultXml = xmlParse(CFHTTP.FileContent);
 			
 			if (isDefined("resultXml.ArrayOfResult") and arrayLen(resultXml.ArrayOfResult.XmlChildren) GT 0)
 			{
-				result = arrayNew(1);
-				
 				itemIter = resultXml.ArrayOfResult.XmlChildren.iterator();
 				while( itemIter.hasNext() )
 				{
 					itemXml = itemIter.next();
-					item = {
-						about = itemXml["URI"].XmlText,
-						description = itemXml["Description"].XmlText,
-						label = itemXml["Label"].XmlText
-					};
-					
-					arrayAppend(result, item);
+					result = result & '<li onclick="fill(this)" about="#itemXml["URI"].XmlText#" title="#itemXml["Description"].XmlText#">#itemXml["Label"].XmlText#</li>';
 				}
 			}
 		</cfscript>
@@ -38,5 +31,5 @@
 	</cftry>
 </cfif>
 
-<cfcontent reset="true" type="application/json">
-<cfoutput>#serializeJSON(result)#</cfoutput>
+<cfcontent reset="true" type="text/html">
+<cfoutput>#result#</cfoutput>
