@@ -77,37 +77,6 @@ form fieldset div ul
 	padding-top: 5px;
 }
 
-form fieldset div #selectedTags li
-{
-	color: #fff;
-	background-color: #212427;
-	display: inline-block;
-	padding: 5px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	list-style-type: none;
-	margin: 0 0 3px 3px;
-}
-
-form fieldset div #selectedTags li:first-child
-{
-	margin-left: 0;
-}
-
-form fieldset div #selectedTags li span
-{
-	color: #fff;
-	border-left: 1px solid #fff;
-	display: inline;
-	padding: 0 2px 0 5px;
-	margin-left: 5px;
-}
-
-form fieldset div #selectedTags li span:hover
-{
-	color: #87b83d;
-}
-
 form fieldset div.controls {
 	width: 100%;
 	padding-top: 10px;

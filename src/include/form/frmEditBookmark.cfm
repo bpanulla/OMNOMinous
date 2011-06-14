@@ -27,8 +27,8 @@
 		</div>
 		<div>
 			<label for="tags">Tags</label>
-			<ul id="selectedTags"><cfoutput>
-				<li>#bookmark.tag#</li>
+			<ul id="selectedTags" class="tags"><cfoutput>
+				<li about="#bookmark.tag#"><a href="#bookmark.tag#">#listLast(bookmark.tag,"/")#</a></li>
 			</cfoutput></ul>
 		</div>
 		</cfoutput>

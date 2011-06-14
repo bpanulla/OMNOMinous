@@ -18,7 +18,7 @@
 		</div>
 		<div>
 			<label for="tags">Tags</label>
-			<ul id="selectedTags"></ul>
+			<ul id="selectedTags" class="tags"></ul>
 		</div>
 		<div>
 			<label for="tags">New Tag</label>	

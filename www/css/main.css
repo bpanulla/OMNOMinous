@@ -164,3 +164,24 @@ px      68    160    252    344    436    */
 	}
 	
 }
+
+/* Local styles */
+/* Inspired by The Go Green Theme for WordPress by Shawn Jones (http://www.TheGoGreenBlog.com) */
+
+a:link, a:active, a:visited {color:#87b83d; text-decoration:none;}
+header a:link, header a:active, header a:visited,
+footer a:link, footer a:active, footer a:visited {color:#fff;}
+a:hover {text-decoration:underline;}
+header h1 a:hover {text-decoration:none;}
+
+body {color: #87B83D; background-color:#fff}
+header,footer {color: #fff; background-color:#87B83D; text-align:left;}
+
+header {overflow:auto;}
+header #masthead {float:left; width: 60%}
+header nav {float:left; width: 40%; text-align: right; vertical-align:bottom;}
+header nav ul {margin:0;}
+header nav li {display:inline; font-size:14px; font-weight:bold; margin:0 20px 0 0;}
+
+section#content {clear: both;}
+

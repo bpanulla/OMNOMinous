@@ -20,7 +20,8 @@ body { width: 100%; height: 100%; font:12px Arial, Sans-Serif;
 
 a:link, a:active, a:visited {color:#87b83d; text-decoration:none;}
 header a:link, header a:active, header a:visited,
-	footer a:link, footer a:active, footer a:visited {color:#fff}
+	footer a:link, footer a:active, footer a:visited,
+	ul.tags a:link, ul.tags a:active, ul.tags a:visited {color:#fff}
 a:hover {text-decoration:underline}
 header h1 a:hover {text-decoration:none}
 
@@ -61,3 +62,39 @@ ul.bookmarks > li ul.cmd {float:right; }
 ul.bookmarks > li ul.cmd li { display: inline-block; padding: 0 5px; }
 
 #ihazaflavor { width: 50%; margin:0 auto; }
+
+ul.tags
+{
+	margin-top: 5px;	
+}
+
+ul.tags li
+{
+	color: #fff;
+	background-color: #666;
+	display: inline-block;
+	padding: 5px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	list-style-type: none;
+	margin: 0 0 3px 3px;
+}
+
+ul.tags li:first-child
+{
+	margin-left: 0;
+}
+
+ul.tags li span
+{
+	color: #fff;
+	border-left: 1px solid #fff;
+	display: inline;
+	padding: 0 2px 0 5px;
+	margin-left: 5px;
+}
+
+ul.tags li span:hover
+{
+	color: #87b83d;
+}
