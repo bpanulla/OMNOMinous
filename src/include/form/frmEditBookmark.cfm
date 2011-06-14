@@ -1,3 +1,5 @@
+<script type="text/javascript" src="js/util.js"></script>
+
 <form id="frmEditBookmark" method="post" action="edit.cfm">
 	<fieldset class="panel">
 		<legend>Edit Bookmark</legend>
@@ -17,13 +19,28 @@
 		</div>
 		<div>
 			<label>Modified</label>
-			<div>#bookmark.dateModified#</div>
+			<span>#bookmark.dateModified#</span>
 		</div>
 		<div>
 			<label for="notes">Notes</label>	
 			<textarea id="notes" name="notes" cols="30">#bookmark.notes#</textarea>
 		</div>
+		<div>
+			<label for="tags">Tags</label>
+			<ul id="selectedTags"></ul>
+		</div>
 		</cfoutput>
+		<div>
+			<label for="tags">New Tag</label>	
+			<input id="tagInput" name="tagInput" type="text" size="60"
+					onkeyup="lookup(this.value)" onblur="fill()" />
+
+			<!-- hide our suggestion box to begin with-->
+			<div class="suggestionsBox" id="suggestions" style="display: none;position: relative; top: 0px; left: 250px;">
+				<img src="img/upArrow.png" style="position: relative; top: -18px; left: 30px;" alt="upArrow" />
+				<div class="suggestionList" id="autoSuggestionsList"></div>
+			</div>
+		</div>
 		<div class="controls">
 			<input type="submit" value="Update"/>
 		</div>
