@@ -31,7 +31,7 @@ h3 {font-size:16px;}
 h4 {font-size:14px;}
 
 header, footer, section#content {width: 100%;}
-header div.wrapper, footer div.wrapper, section#content div.wrapper {width: 960px; margin: 0 auto;}
+header div.wrapper, footer div.wrapper, section#content div.wrapper {width: 800px; margin: 0 auto;}
 header {height:100px; margin-bottom:20px;}
 footer {height:50px; margin-top:20px; padding-top:20px;}
 
@@ -51,7 +51,7 @@ header nav a:hover {color:#fff; text-decoration:underline;}
 textarea {width:450px; height:100px; margin:10px 0 10px 0; font-family:Arial, Sans-Serif; font-size:12px; padding:10px;}
 
 
-ul.bookmarks { margin-top: 20px; width: 100%; }
+ul.bookmarks { margin: 20px auto; width: 90%; }
 
 ul.bookmarks > li { margin-top: 20px; width: 100%; border: 1px solid #666; padding: 3px; }
 ul.bookmarks > li p { margin-top: 10px; }
