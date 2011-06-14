@@ -23,21 +23,30 @@
 			// Get handles on the member and resource
 			local.member = variables.model.createResource(getAuthUser());
 			local.bookmark = variables.model.createResource(form.resource);
+			local.timestamp = DateFormat(Now(), "yyyy/mm/dd");
 			
 			// Has this member bookmarked this resource?
 			if (local.member.hasProperty( variables.vocab.omnom.bookmarked, local.bookmark ))
 			{
 				WriteOutput("found bookmark for this user!");
-				local.bookmark.createProperty(variables.vocab.DCTerms.title).changeObject( form.title );
-				local.bookmark.createProperty(variables.vocab.DCTerms.description).changeObject( form.notes );
-				local.bookmark.createProperty(variables.vocab.DCTerms.modified, DateFormat(Now(), "yyyy/mm/dd"));
+				local.bookmark.getProperty(variables.vocab.DCTerms.title).changeObject( form.title );
+				local.bookmark.getProperty(variables.vocab.DCTerms.description).changeObject( form.notes );
+				
+				if (local.bookmark.hasProperty(variables.vocab.DCTerms.modified))
+				{
+					local.bookmark.getProperty(variables.vocab.DCTerms.modified).changeObject( local.timestamp );
+				}
+				else
+				{
+					local.bookmark.addProperty(variables.vocab.DCTerms.modified, local.timestamp);
+				}
 			}
-				
-				
 		</cfscript>
 		
-		<cfdump var="#local#">
-		<!---<cflocation url="." addtoken="false">--->
+		<!--- Flag app to reload model --->
+		<cfset request.appReset = true />		
+		
+		<cflocation url="index.cfm?appReset=true" addtoken="false">
 	
 	<cfelse>
 		<cfscript>

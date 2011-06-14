@@ -24,12 +24,14 @@
 			<cf_sparqlns prefix="dct" uri="#variables.vocab.DCTerms.uri#" />
 			<cf_sparqlns prefix="omnom" uri="#variables.vocab.omnom.uri#" />
 						
-			SELECT DISTINCT ?resource ?title ?notes ?dateCreated ?dateModified
+			SELECT DISTINCT ?resource ?location ?title ?notes ?dateCreated ?dateModified ?tag
 			WHERE {
 				?member omnom:bookmarked ?resource.
-				?resource dct:title ?title;
+				?resource foaf:page ?location;
+						dct:title ?title;
 						dct:created ?dateCreated.
-				
+						
+				OPTIONAL { ?resource foaf:topic ?tag }
 				OPTIONAL { ?resource dct:description ?notes }
 				OPTIONAL { ?resource dct:modified ?dateModified }
 				
@@ -52,15 +54,17 @@
 			<cf_sparqlns prefix="dct" uri="#variables.vocab.DCTerms.uri#" />
 			<cf_sparqlns prefix="omnom" uri="#variables.vocab.omnom.uri#" />
 						
-			SELECT DISTINCT ?resource ?title ?notes ?dateCreated ?dateModified
+			SELECT DISTINCT ?resource ?location ?title ?notes ?dateCreated ?dateModified ?tag
 			WHERE {
 				?member omnom:bookmarked ?resource.
-				?resource dct:title ?title;
+				?resource foaf:page ?location;
+						dct:title ?title;
 						dct:created ?dateCreated.
 				
+				OPTIONAL { ?resource foaf:topic ?tag }
 				OPTIONAL { ?resource dct:description ?notes }
 				OPTIONAL { ?resource dct:modified ?dateModified }
-	
+				
 				FILTER (?member = <cf_sparqlparam value="#arguments.member#" type="iri">)
 				FILTER (?resource = <cf_sparqlparam value="#arguments.resource#" type="iri">)
 			}
@@ -70,17 +74,19 @@
 	</cffunction>
 	
 	
-	<cffunction name="create" access="public" output="false" returntype="boolean">
+	<cffunction name="create" access="public" output="false" returntype="string">
 		<cfargument name="member" type="string" required="true" />
-		<cfargument name="resource" type="string" required="true" />
+		<cfargument name="location" type="string" required="true" />
 		<cfargument name="title" type="string" required="true" />
 		<cfargument name="notes" type="string" required="false" default="" />
 		
 		<cfscript>
 			var local = {};
-		
-			local.bookmark = variables.model.createResource(arguments.resource)
-										.addProperty(variables.vocab.RDF.type, variables.vocab.omnom.Resource)
+			local.resource = "http://omnomino.us/resource/" & createUUID();
+			
+			local.bookmark = variables.model.createResource(local.resource)
+										.addProperty(variables.vocab.RDF.type, variables.vocab.foaf.Document)
+										.addProperty(variables.vocab.FOAF.page, arguments.location)
 										.addProperty(variables.vocab.DCTerms.title, arguments.title)
 										.addProperty(variables.vocab.DCTerms.description, arguments.notes)
 										.addProperty(variables.vocab.DCTerms.created, DateFormat(Now(), "yyyy/mm/dd"));
@@ -90,7 +96,7 @@
 			
 		</cfscript>
 	
-		<cfreturn true />
+		<cfreturn local.resource />
 	</cffunction>
 	
 	
@@ -114,10 +120,6 @@
 				local.bookmark.getProperty(variables.vocab.DCTerms.description).changeObject( arguments.notes );
 				local.bookmark.addProperty(variables.vocab.DCTerms.modified, DateFormat(Now(), "yyyy/mm/dd"));
 			}
-			else
-			{
-				addBookmark(arguments.member, arguments.resource, arguments.title, arguments.notes);
-			}							
 		</cfscript>
 	
 		<cfreturn true />

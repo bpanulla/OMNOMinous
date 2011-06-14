@@ -9,8 +9,8 @@
 			<input id="title" name="title" type="text" size="60" />
 		</div>
 		<div>
-			<label for="resource">URL</label>
-			<input id="resource" name="resource" type="text" size="60" />
+			<label for="location">URL</label>
+			<input id="location" name="location" type="text" size="60" />
 		</div>
 		<div>
 			<label for="notes">Notes</label>	

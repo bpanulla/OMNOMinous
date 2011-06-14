@@ -78,10 +78,13 @@
 		if ( isDefined("URL.appReset") )
 		{
 			onApplicationStart();
+			redirect(application.properties.rootUri);
 		}
 		
 		// Check debugging setting
 		applySettings( showdebugoutput:application.properties.debug );
+		
+		return true;
 	}
 	
 	function onRequestEnd() { return true; }
@@ -101,6 +104,11 @@
 	<cfsetting enablecfoutputonly="#arguments.enablecfoutputonly#"
 			   requesttimeout="#arguments.requesttimeout#"
 			   showdebugoutput="#arguments.showdebugoutput#" />
+</cffunction>
+
+<cffunction name="redirect" access="private" output="false">
+	<cfargument name="location" type="string" required="true">	
+	<cflocation url="#arguments.location#" addtoken="false" />
 </cffunction>
 
 </cfcomponent>
