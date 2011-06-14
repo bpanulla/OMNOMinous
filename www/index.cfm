@@ -15,7 +15,7 @@
 					<li><a href="edit.cfm?resource=#URLEncodedFormat(bookmarks.resource)#">Edit</a></li>
 					<li><a href="delete.cfm?resource=#URLEncodedFormat(bookmarks.resource)#">Delete</a></li>
 				</ul>
-				<h2><a href="#bookmarks.resource#">#bookmarks.title#</a></h3>
+				<h2><a href="#bookmarks.location#">#bookmarks.title#</a></h3>
 				<div>Created #bookmarks.dateCreated#</div>
 				<p>#bookmarks.notes#</p>
 			</li>
