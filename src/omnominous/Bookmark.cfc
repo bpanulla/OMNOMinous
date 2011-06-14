@@ -79,23 +79,29 @@
 		<cfargument name="location" type="string" required="true" />
 		<cfargument name="title" type="string" required="true" />
 		<cfargument name="notes" type="string" required="false" default="" />
+		<cfargument name="tag" type="array" required="false" />
 		
 		<cfscript>
 			var local = {};
 			local.resource = "http://omnomino.us/resource/" & createUUID();
 			
 			local.bookmark = variables.model.createResource(local.resource)
-										.addProperty(variables.vocab.RDF.type, variables.vocab.foaf.Document)
+										.addProperty(variables.vocab.RDF.type, variables.vocab.omnom.Member)
 										.addProperty(variables.vocab.FOAF.page, arguments.location)
 										.addProperty(variables.vocab.DCTerms.title, arguments.title)
 										.addProperty(variables.vocab.DCTerms.description, arguments.notes)
 										.addProperty(variables.vocab.DCTerms.created, DateFormat(Now(), "yyyy/mm/dd"));
-										
+			
+			for (i = 1; i <= arrayLen(tag); i = i + 1)
+			{
+				local.bookmark.addProperty(variables.vocab.FOAF.topic, tag[i]);
+			}
+			
 			variables.model.getResource(arguments.member)
 										.addProperty(variables.vocab.omnom.bookmarked, local.bookmark);
 			
 		</cfscript>
-	
+			
 		<cfreturn local.resource />
 	</cffunction>
 	

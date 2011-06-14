@@ -3,9 +3,17 @@
 <cfparam name="form.resource" type="string" default="">
 <cfparam name="form.title" type="string" default="">
 <cfparam name="form.notes" type="string" default="">
+<cfparam name="form.tag" type="string" default="">
 
 <cfmodule template="/include/layout.cfm" title="Edit Bookmark">
 	<cfif trim(form.resource) NEQ "" and trim(form.title) NEQ "">
+		
+		<cfset variables.tags = arrayNew(1) />
+
+		<cfif len(trim(form.tag)) gt 0>
+			<cfset variables.tags = listToArray(form.tag) />
+		</cfif>
+		
 		<cfscript>
 			variables.vocab = application.beanFactory
 				.getBean("vocab");
@@ -39,6 +47,11 @@
 				else
 				{
 					local.bookmark.addProperty(variables.vocab.DCTerms.modified, local.timestamp);
+				}
+				
+				for (i = 1; i <= arrayLen(tags); i = i + 1)
+				{
+					local.bookmark.addProperty(variables.vocab.FOAF.topic, tags[i]);
 				}
 			}
 		</cfscript>

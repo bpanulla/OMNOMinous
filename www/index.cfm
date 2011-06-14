@@ -9,7 +9,7 @@
 	<h2>My Bookmarks</h2>
 	<cfif bookmarks.recordcount GT 0>
 		<ul class="bookmarks">
-		<cfoutput query="bookmarks">
+		<cfoutput query="bookmarks" group="resource">
 			<li>
 				<ul class="cmd">
 					<li><a href="edit.cfm?resource=#URLEncodedFormat(bookmarks.resource)#">Edit</a></li>
@@ -17,6 +17,9 @@
 				</ul>
 				<h2><a href="#bookmarks.location#">#bookmarks.title#</a></h3>
 				<div>Created #bookmarks.dateCreated#</div>
+				<ul class="tags">
+					<cfoutput><li>#bookmarks.tag#</li></cfoutput>
+				</ul>
 				<p>#bookmarks.notes#</p>
 			</li>
 		</cfoutput>

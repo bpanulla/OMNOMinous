@@ -3,7 +3,7 @@
 <form id="frmEditBookmark" method="post" action="edit.cfm">
 	<fieldset class="panel">
 		<legend>Edit Bookmark</legend>
-		<cfoutput>
+		<cfoutput query="bookmark" group="resource">
 		<input name="resource" type="hidden" value="#bookmark.resource#">
 		<div>
 			<label for="title">Title</label>
@@ -27,7 +27,9 @@
 		</div>
 		<div>
 			<label for="tags">Tags</label>
-			<ul id="selectedTags"></ul>
+			<ul id="selectedTags"><cfoutput>
+				<li>#bookmark.tag#</li>
+			</cfoutput></ul>
 		</div>
 		</cfoutput>
 		<div>

@@ -26,6 +26,7 @@
 		// Remove click handler and add delete link
 		newTag.removeAttr('onclick').unbind('click', fill);
 		newTag.append('<span onclick="remove(this)">x</span>');
+		newTag.append('<input name="tag" type="hidden" value="'+$(item).attr('about') +'">');
 
 		$('#selectedTags').append(newTag);
 		setTimeout("$('#suggestions').hide();", 200);
