@@ -25,7 +25,9 @@
 		<p>No bookmarks.</p>
 	</cfif>
 <cfelse>
-Please log in!	
+<div id="ihazaflavor">
+	<img src="img/nom.jpg" height="450px">
+</div>
 </cfif>
 
 </div>
