@@ -1,4 +1,5 @@
 <cfcomponent output="false">
+<cfinclude template="functions.cfm">
 <cfscript>
 
 	// Application settings
@@ -8,7 +9,8 @@
 	this.clientManagement = false;
 	this.sessionManagement = true;
 	this.sessionTimeout = createTimespan(0,1,0,0);
-
+	
+	// Application environment
 	this.webRoot = GetDirectoryFromPath(GetCurrentTemplatePath());
 	this.projectRoot = createObject("java", "java.io.File")
 								.init(this.webRoot)
@@ -31,7 +33,7 @@
 		    libFolder = this.projectRoot & "/lib",
 			classpath = ""
 		};
-    
+	
 	/* ========================================================================================================== \
 	|	Application
 	\ =========================================================================================================== */
@@ -54,20 +56,6 @@
 		
 		return true;
 	}	
-	
-	function onApplicationEnd() { return true; }
-
-	/* ========================================================================================================== \
-	|	Session
-	\ =========================================================================================================== */
-
-	function onSessionStart() { return true; }
-	
-	function onSessionEnd() { return true; }
-
-	/* ========================================================================================================== \
-	|	Request
-	\ =========================================================================================================== */
 
 	function onRequestStart( request ) {
 		if ( isDefined("URL.debug") )
@@ -86,29 +74,5 @@
 		
 		return true;
 	}
-	
-	function onRequestEnd() { return true; }
-
 </cfscript>
-
-
-<!--- ========================================================================================================== \
-|	Helper functions that require tag syntax
-\ =========================================================================================================== --->
-
-<cffunction name="applySettings" access="private" output="false">
-	<cfargument name="enablecfoutputonly" type="boolean" default="false">	
-	<cfargument name="showdebugoutput" type="boolean" default="false">
-	<cfargument name="requesttimeout" type="numeric" default="30">
-
-	<cfsetting enablecfoutputonly="#arguments.enablecfoutputonly#"
-			   requesttimeout="#arguments.requesttimeout#"
-			   showdebugoutput="#arguments.showdebugoutput#" />
-</cffunction>
-
-<cffunction name="redirect" access="private" output="false">
-	<cfargument name="location" type="string" required="true">	
-	<cflocation url="#arguments.location#" addtoken="false" />
-</cffunction>
-
 </cfcomponent>
