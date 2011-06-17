@@ -17,3 +17,15 @@
 	<cfargument name="location" type="string" required="true">	
 	<cflocation url="#arguments.location#" addtoken="false" />
 </cffunction>
+
+
+<cffunction name="writeDump">
+	<cfargument name="var" type="any" required="true" />
+	<cfargument name="expand" type="boolean" required="false" default="true" />
+	<cfargument name="abort" type="boolean" required="false" default="false" />
+	<cfargument name="format" type="string" required="false" default="html" />
+	
+	<cfdump var="#arguments.var#" expand="#arguments.expand#" abort="#arguments.abort#" format="#arguments.format#">
+	
+	<cfif arguments.abort><cfabort /></cfif>
+</cffunction>
